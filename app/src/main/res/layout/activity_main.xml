@@ -23,6 +23,13 @@
             android:layout_gravity="end"
             android:orientation="horizontal"
             android:layout_marginEnd="16dp">
+            <!-- Icono de Conexión MQTT (nuevo) -->
+            <ImageView
+                android:id="@+id/ivIconoConexion"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_conexion"
+                android:layout_marginEnd="12dp" />
 
 
 
