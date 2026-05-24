@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--  AR Fragment (Cámara) -->
+    <fragment
+        android:id="@+id/arFragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- UI encima de la cámara -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top|center_horizontal"
+        android:paddingTop="40dp"
+        android:gravity="center_horizontal">
+
+        <!-- Estado AR -->
+        <TextView
+            android:id="@+id/tvEstadoAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciando AR..."
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#AA000000"
+            android:padding="12dp"
+            android:elevation="4dp" />
+
+        <!-- Texto MQTT -->
+        <TextView
+            android:id="@+id/tvMQTT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esperando señal..."
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:background="#AA000000"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp"/>
+    </LinearLayout>
+    <!-- ⬅ Botón de regresar -->
+    <ImageButton
+        android:id="@+id/btnRegresar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|start"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Regresar"
+        android:src="@drawable/ic_arrow_back"
+        android:elevation="6dp"/>
+</FrameLayout>
