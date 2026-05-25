@@ -13,6 +13,9 @@
     <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
+
+
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,7 +24,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VisionSign"
-        tools:targetApi="31">
+        tools:targetApi="31"
+
+        android:enableOnBackInvokedCallback="false">
 
         <!-- SERVICIO MQTT -->
         <service android:name="org.eclipse.paho.android.service.MqttService" />

@@ -8,12 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -146,7 +144,7 @@ public class encuestaPostConocimiento extends AppCompatActivity {
         }
 
         // Calcular promedio post‑conocimiento (pc1 a pc4)
-        double postPromedio = (respuestas.get("pc1") + respuestas.get("pc2") +
+        final double postPromedio = (respuestas.get("pc1") + respuestas.get("pc2") +
                 respuestas.get("pc3") + respuestas.get("pc4")) / 4.0;
 
         String userId = mAuth.getCurrentUser().getUid();
@@ -160,28 +158,32 @@ public class encuestaPostConocimiento extends AppCompatActivity {
                 .addOnSuccessListener(documentSnapshot -> {
                     Double prePromedio = documentSnapshot.getDouble("prePromedio");
                     if (prePromedio == null) prePromedio = 0.0;
+                    final double prePromedioFinal = prePromedio;   // ✅ COPIA FINAL
 
-                    double incremento = postPromedio - prePromedio;
+                    final double incremento = postPromedio - prePromedioFinal;
 
                     // 1. Guardar la encuesta final en Firestore
                     Map<String, Object> encuesta = new HashMap<>();
                     encuesta.put("usuarioId", userId);
-                    encuesta.put("respuestasPostConocimiento", new HashMap<String, Integer>() {{
-                        put("p1", respuestas.get("pc1"));
-                        put("p2", respuestas.get("pc2"));
-                        put("p3", respuestas.get("pc3"));
-                        put("p4", respuestas.get("pc4"));
-                    }});
-                    encuesta.put("respuestasSatisfaccion", new HashMap<String, Integer>() {{
-                        put("p1", respuestas.get("s1"));
-                        put("p2", respuestas.get("s2"));
-                        put("p3", respuestas.get("s3"));
-                        put("p4", respuestas.get("s4"));
-                        put("p5", respuestas.get("s5"));
-                        put("p6", respuestas.get("s6"));
-                        put("p7", respuestas.get("s7"));
-                        put("p8", respuestas.get("s8"));
-                    }});
+
+                    Map<String, Integer> postMap = new HashMap<>();
+                    postMap.put("p1", respuestas.get("pc1"));
+                    postMap.put("p2", respuestas.get("pc2"));
+                    postMap.put("p3", respuestas.get("pc3"));
+                    postMap.put("p4", respuestas.get("pc4"));
+                    encuesta.put("respuestasPostConocimiento", postMap);
+
+                    Map<String, Integer> satMap = new HashMap<>();
+                    satMap.put("p1", respuestas.get("s1"));
+                    satMap.put("p2", respuestas.get("s2"));
+                    satMap.put("p3", respuestas.get("s3"));
+                    satMap.put("p4", respuestas.get("s4"));
+                    satMap.put("p5", respuestas.get("s5"));
+                    satMap.put("p6", respuestas.get("s6"));
+                    satMap.put("p7", respuestas.get("s7"));
+                    satMap.put("p8", respuestas.get("s8"));
+                    encuesta.put("respuestasSatisfaccion", satMap);
+
                     encuesta.put("promedioPostConocimiento", postPromedio);
                     encuesta.put("incrementoAprendizaje", incremento);
                     encuesta.put("fechaCompletado", System.currentTimeMillis());
@@ -201,7 +203,7 @@ public class encuestaPostConocimiento extends AppCompatActivity {
                                         .addOnSuccessListener(aVoid2 -> {
                                             // 3. Registrar evento en Firebase Analytics
                                             Bundle bundle = new Bundle();
-                                            bundle.putDouble("pre_promedio", prePromedio);
+                                            bundle.putDouble("pre_promedio", prePromedioFinal);
                                             bundle.putDouble("post_promedio", postPromedio);
                                             bundle.putDouble("incremento", incremento);
                                             mFirebaseAnalytics.logEvent("aprendizaje_completado", bundle);
