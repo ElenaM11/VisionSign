@@ -53,6 +53,9 @@ dependencies {
     implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
     //firebase analitics
     implementation ("com.google.firebase:firebase-analytics")
+    //onback
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.activity:activity:1.8.0")
 
     // AndroidX
     implementation(libs.appcompat)
