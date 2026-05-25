@@ -51,6 +51,8 @@ dependencies {
 
     // Sceneform para AR (alternativa)
     implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
+    //firebase analitics
+    implementation ("com.google.firebase:firebase-analytics")
 
     // AndroidX
     implementation(libs.appcompat)

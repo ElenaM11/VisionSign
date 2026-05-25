@@ -1,10 +1,681 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".encuestaPostConocimiento">
+    android:orientation="vertical"
+    android:background="#F0F8FF">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#003366"
+        app:titleTextColor="@android:color/white"
+        app:title=" Cuestionario final" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== SECCIÓN POST‑CONOCIMIENTO ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ENCUESTA POST‑CONOCIMIENTO"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#003366"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona la cantidad de estrellas que mejor represente tu opinión:\n1★ = Muy en desacuerdo | 2★ = En desacuerdo | 3★ = Neutral | 4★ = De acuerdo | 5★ = Muy de acuerdo"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="24dp"
+                android:background="#E3F2FD"
+                android:padding="12dp" />
+
+            <!-- Pregunta PC1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 1. Soy capaz de identificar y diferenciar correctamente la postura de los dedos y las manos para las señas básicas del alfabeto o vocabulario de la LSB."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_pc1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_pc1"
+                            style="@style/EstrellaEncuesta"
+                            android:text="☆" />
+                        <TextView
+                            android:id="@+id/star2_pc1"
+                            style="@style/EstrellaEncuesta"
+                            android:text="☆" />
+                        <TextView
+                            android:id="@+id/star3_pc1"
+                            style="@style/EstrellaEncuesta"
+                            android:text="☆" />
+                        <TextView
+                            android:id="@+id/star4_pc1"
+                            style="@style/EstrellaEncuesta"
+                            android:text="☆" />
+                        <TextView
+                            android:id="@+id/star5_pc1"
+                            style="@style/EstrellaEncuesta"
+                            android:text="☆" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta PC2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 2. Cuando practico de forma autónoma (sin un instructor humano presente), tengo la capacidad de identificar por mí mismo si cometí un error en la posición de mi mano."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_pc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_pc2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_pc2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_pc2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_pc2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_pc2" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta PC3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3. Me siento capaz de estructurar mentalmente una idea o respuesta sencilla directamente en lengua de señas antes de tener que expresarla."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_pc3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_pc3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_pc3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_pc3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_pc3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_pc3" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta PC4 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🗣️ 4. Me siento preparado/a para utilizar mis conocimientos de lengua de señas para entablar una interacción o conversación básica con una persona con discapacidad auditiva."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_pc4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_pc4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_pc4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_pc4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_pc4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_pc4" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Separador -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginVertical="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ ENCUESTA DE SATISFACCIÓN"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#003366"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ===== PREGUNTAS DE SATISFACCIÓN (8) ===== -->
+
+            <!-- S1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 1. El guante sensorizado es fácil de utilizar."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s1" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s1" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s1" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s1" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s1" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. La interfaz de la aplicación móvil es fácil de entender."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s2" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s2" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚡ 3. La retroalimentación en tiempo real me ayuda a corregir mis errores."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s3" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s3" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S4 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 4. La realidad aumentada mejora mi experiencia de aprendizaje."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s4" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s4" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S5 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 5. El sistema me motiva a seguir aprendiendo lengua de señas."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s5" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s5" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s5" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s5" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s5" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S6 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 6. Considero que el sistema es útil para el aprendizaje autónomo."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s6" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s6" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s6" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s6" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s6" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S7 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 7. El sistema es innovador en comparación con métodos tradicionales."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s7" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s7" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s7" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s7" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s7" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- S8 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 8. Recomendaría este sistema a otros estudiantes."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_s8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView android:id="@+id/star1_s8" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star2_s8" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star3_s8" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star4_s8" style="@style/EstrellaEncuesta" android:text="☆" />
+                        <TextView android:id="@+id/star5_s8" style="@style/EstrellaEncuesta" android:text="☆" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy en desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="En desacuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Neutral" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="De acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Muy de acuerdo" android:textSize="9sp" android:textColor="#666666" android:gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botón enviar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEnviarEncuesta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" ENVIAR CUESTIONARIO"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#0066CC"
+                android:layout_marginBottom="16dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

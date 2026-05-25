@@ -1,10 +1,766 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".encuestaConocimiento">
+    android:orientation="vertical"
+    android:background="#F0F8FF">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#003366"
+        app:titleTextColor="@android:color/white"
+        app:title="⭐ Encuesta de Conocimientos"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ ENCUESTA DE CONOCIMIENTOS"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#003366"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selecciona la cantidad de estrellas que mejor represente tu opinión:\n1★ = Muy en desacuerdo | 2★ = En desacuerdo | 3★ = Neutral | 4★ = De acuerdo | 5★ = Muy de acuerdo"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginBottom="24dp"
+                android:background="#E3F2FD"
+                android:padding="12dp"/>
+
+            <!-- Pregunta 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1. Tengo conocimientos sobre qué es la Lengua de Señas."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_p1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_p1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star2_p1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star3_p1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star4_p1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star5_p1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy en desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="En desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Neutral"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="De acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy de acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 2. Entiendo que la Lengua de Señas Boliviana (LSB) es utilizada por personas con discapacidad auditiva en Bolivia."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_p2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_p2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star2_p2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star3_p2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star4_p2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star5_p2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy en desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="En desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Neutral"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="De acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy de acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta 3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3. Reconozco que la lengua de señas es un sistema visual-gestual de comunicación."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_p3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_p3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star2_p3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star3_p3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star4_p3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star5_p3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy en desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="En desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Neutral"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="De acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy de acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta 4 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4. Conozco que el abecedario dactilológico representa letras mediante señas."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_p4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_p4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star2_p4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star3_p4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star4_p4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star5_p4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy en desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="En desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Neutral"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="De acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy de acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pregunta 5 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5. Comprendo que la LSB no es igual al idioma español."
+                        android:textSize="14sp"
+                        android:textColor="#333333"
+                        android:layout_marginBottom="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/estrellas_p5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/star1_p5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star2_p5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star3_p5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star4_p5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:id="@+id/star5_p5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="☆"
+                            android:textSize="40sp"
+                            android:textColor="#666666"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:padding="8dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy en desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="En desacuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Neutral"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="De acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Muy de acuerdo"
+                            android:textSize="9sp"
+                            android:textColor="#666666"
+                            android:gravity="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEnviarEncuesta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⭐ ENVIAR ENCUESTA"
+                android:textColor="@android:color/white"
+                app:cornerRadius="8dp"
+                android:backgroundTint="#0066CC"
+                android:layout_marginBottom="16dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
