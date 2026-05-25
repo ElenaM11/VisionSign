@@ -22,14 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.button.MaterialButton;
-import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+
+//  CORREGIDO: usar MqttClient puro, NO MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,15 +38,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivIconoConexion, ivIconoCamara;
     private MaterialButton btnIniciarPractica, btnCerrarSesion;
 
-    // MQTT con Eclipse Paho
-    private MqttAndroidClient mqttClient;
-    private final String brokerUrl = "tcp://192.168.16.110:1883";  // IP de tu laptop con Coreflux
-    private final String topic = "guante/gesto";                 // Tópico donde publica el ESP32
-    private final String username = null;
-    private final String password = null;
+    //  CORREGIDO: MqttClient puro (no necesita servicio Android)
+    private MqttClient mqttClient;
+    private final String brokerUrl = "tcp://192.168.16.110:1883";
+    private final String topic = "guante/gesto";
 
-    private boolean isConnecting = false;
-    private boolean isConnected = false;
+    private volatile boolean isConnecting = false;
+    private volatile boolean isConnected = false;
     private ConnectivityManager.NetworkCallback networkCallback;
     private SharedPreferences sharedPreferences;
     private ActivityResultLauncher<Intent> arLauncher;
@@ -58,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = getSharedPreferences("GuanteJPrefs", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("VisionSignPrefs", MODE_PRIVATE);
 
-        tvEstadoMQTT = findViewById(R.id.tvEstadoMQTT);
-        tvEstadoCamara = findViewById(R.id.tvEstadoCamara);
+        tvEstadoMQTT    = findViewById(R.id.tvEstadoMQTT);
+        tvEstadoCamara  = findViewById(R.id.tvEstadoCamara);
         ivIconoConexion = findViewById(R.id.ivIconoConexion);
-        ivIconoCamara = findViewById(R.id.ivIconoCamara);
+        ivIconoCamara   = findViewById(R.id.ivIconoCamara);
         btnIniciarPractica = findViewById(R.id.btnIniciarPractica);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion    = findViewById(R.id.btnCerrarSesion);
 
         tvEstadoMQTT.setText("Conectando...");
         tvEstadoCamara.setText("Camara no iniciada");
@@ -73,21 +72,27 @@ public class MainActivity extends AppCompatActivity {
         ivIconoCamara.setColorFilter(Color.GRAY);
         btnIniciarPractica.setEnabled(false);
 
-        // Launcher para AR
-        arLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                boolean practicaCompletada = result.getData().getBooleanExtra("practicaCompletada", false);
-                if (practicaCompletada) {
-                    boolean encuestaCompletada = sharedPreferences.getBoolean("encuestaSatisfaccionCompletada", false);
-                    if (!encuestaCompletada) {
-                        sharedPreferences.edit().putBoolean("encuestaSatisfaccionCompletada", true).apply();
-                        startActivity(new Intent(this, encuestaPostConocimiento.class));
-                    } else {
-                        Toast.makeText(this, "Encuesta ya completada", Toast.LENGTH_SHORT).show();
+        arLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        boolean practicaCompletada = result.getData()
+                                .getBooleanExtra("practicaCompletada", false);
+                        if (practicaCompletada) {
+                            boolean encuestaCompletada = sharedPreferences
+                                    .getBoolean("encuestaSatisfaccionCompletada", false);
+                            if (!encuestaCompletada) {
+                                sharedPreferences.edit()
+                                        .putBoolean("encuestaSatisfaccionCompletada", true)
+                                        .apply();
+                                startActivity(new Intent(this, encuestaPostConocimiento.class));
+                            } else {
+                                Toast.makeText(this, "Encuesta ya completada", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 }
-            }
-        });
+        );
 
         btnIniciarPractica.setOnClickListener(v -> verificarPermisoCamara());
         btnCerrarSesion.setOnClickListener(v -> finishAffinity());
@@ -96,18 +101,33 @@ public class MainActivity extends AppCompatActivity {
         conectarMQTT();
     }
 
+    // -------------------- Permisos y AR --------------------
+
     private void verificarPermisoCamara() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-        else abrirAR();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_CAMERA_PERMISSION
+            );
+        } else {
+            abrirAR();
+        }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CAMERA_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        if (requestCode == REQUEST_CAMERA_PERMISSION
+                && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             abrirAR();
-        else Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void abrirAR() {
@@ -117,15 +137,20 @@ public class MainActivity extends AppCompatActivity {
         arLauncher.launch(new Intent(this, ar.class));
     }
 
-    // -------------------- MQTT con Eclipse Paho --------------------
+    // -------------------- MQTT (MqttClient puro en hilo) --------------------
+
     private void registrarCallbackRed() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkRequest request = new NetworkRequest.Builder().addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build();
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkRequest request = new NetworkRequest.Builder()
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .build();
         networkCallback = new ConnectivityManager.NetworkCallback() {
-            @Override
-            public void onAvailable(@NonNull Network network) { reconectarMQTT(); }
-            @Override
-            public void onLost(@NonNull Network network) { runOnUiThread(() -> actualizarEstadosMQTT(false)); isConnected = false; }
+            @Override public void onAvailable(@NonNull Network network) { reconectarMQTT(); }
+            @Override public void onLost(@NonNull Network network) {
+                runOnUiThread(() -> actualizarEstadosMQTT(false));
+                isConnected = false;
+            }
         };
         cm.registerNetworkCallback(request, networkCallback);
     }
@@ -133,82 +158,70 @@ public class MainActivity extends AppCompatActivity {
     private void conectarMQTT() {
         if (isConnecting) return;
         isConnecting = true;
-        tvEstadoMQTT.setText("Conectando...");
-        ivIconoConexion.setColorFilter(Color.YELLOW);
+        runOnUiThread(() -> {
+            tvEstadoMQTT.setText("Conectando...");
+            ivIconoConexion.setColorFilter(Color.YELLOW);
+        });
 
-        String clientId = "Android_" + System.currentTimeMillis();
-        mqttClient = new MqttAndroidClient(getApplicationContext(), brokerUrl, clientId);
-        MqttConnectOptions options = new MqttConnectOptions();
-        options.setCleanSession(true);
-        options.setConnectionTimeout(10);
-        options.setKeepAliveInterval(60);
-        if (username != null && password != null) {
-            options.setUserName(username);
-            options.setPassword(password.toCharArray());
-        }
+        //  CORREGIDO: toda la conexión en un hilo de background
+        new Thread(() -> {
+            try {
+                String clientId = "Android_" + System.currentTimeMillis();
 
-        try {
-            mqttClient.connect(options, null, new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    isConnecting = false;
-                    isConnected = true;
-                    runOnUiThread(() -> actualizarEstadosMQTT(true));
-                    suscribirse();
-                }
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    isConnecting = false;
-                    isConnected = false;
-                    runOnUiThread(() -> actualizarEstadosMQTT(false));
-                    Log.e(TAG, "Conexión MQTT fallida", exception);
-                }
-            });
-        } catch (MqttException e) {
-            isConnecting = false;
-            Log.e(TAG, "Error de conexión MQTT", e);
-        }
-    }
+                //  MqttClient puro con MemoryPersistence — no necesita servicio
+                mqttClient = new MqttClient(brokerUrl, clientId, new MemoryPersistence());
 
-    private void suscribirse() {
-        try {
-            mqttClient.subscribe(topic, 0, null, new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    Log.d(TAG, "Suscrito a " + topic);
-                    mqttClient.setCallback(new MqttCallback() {
-                        @Override
-                        public void connectionLost(Throwable cause) {
-                            runOnUiThread(() -> actualizarEstadosMQTT(false));
-                            isConnected = false;
-                            reconectarMQTT();
-                        }
-                        @Override
-                        public void messageArrived(String topic, MqttMessage message) {
-                            String payload = new String(message.getPayload());
-                            Log.d(TAG, "Mensaje recibido: " + payload);
-                            // Enviar el JSON a MQTTManager (que lo pasará a AR)
-                            MQTTManager.enviarMensaje(payload);
-                        }
-                        @Override
-                        public void deliveryComplete(IMqttDeliveryToken token) {}
-                    });
-                }
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Log.e(TAG, "Suscripción fallida", exception);
-                }
-            });
-        } catch (MqttException e) {
-            Log.e(TAG, "Error al suscribirse", e);
-        }
+                MqttConnectOptions options = new MqttConnectOptions();
+                options.setCleanSession(true);
+                options.setConnectionTimeout(10);
+                options.setKeepAliveInterval(60);
+                options.setAutomaticReconnect(true); //  reconexión automática integrada
+
+                // Callback de mensajes y desconexión
+                mqttClient.setCallback(new MqttCallback() {
+                    @Override
+                    public void connectionLost(Throwable cause) {
+                        isConnected = false;
+                        runOnUiThread(() -> actualizarEstadosMQTT(false));
+                        Log.w(TAG, "Conexión perdida", cause);
+                        // automaticReconnect se encarga de reconectar
+                    }
+                    @Override
+                    public void messageArrived(String topic, MqttMessage message) {
+                        String payload = new String(message.getPayload());
+                        Log.d(TAG, "Mensaje recibido: " + payload);
+                        MQTTManager.enviarMensaje(payload);
+                    }
+                    @Override
+                    public void deliveryComplete(IMqttDeliveryToken token) {}
+                });
+
+                mqttClient.connect(options);
+
+                // Suscribirse después de conectar
+                mqttClient.subscribe(topic, 1);
+                Log.d(TAG, "Conectado y suscrito a: " + topic);
+
+                isConnecting = false;
+                isConnected = true;
+                runOnUiThread(() -> actualizarEstadosMQTT(true));
+
+            } catch (MqttException e) {
+                isConnecting = false;
+                isConnected = false;
+                runOnUiThread(() -> actualizarEstadosMQTT(false));
+                Log.e(TAG, "Error de conexión MQTT", e);
+            }
+        }).start();
     }
 
     private void reconectarMQTT() {
         if (isConnected || isConnecting) return;
+        // Cerrar cliente anterior si existe
         if (mqttClient != null) {
-            try { mqttClient.disconnect(); } catch (Exception ignored) {}
+            try { mqttClient.disconnectForcibly(0); } catch (Exception ignored) {}
             try { mqttClient.close(); } catch (Exception ignored) {}
+            mqttClient = null;
         }
         conectarMQTT();
     }
@@ -227,19 +240,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         if (!isConnected && !isConnecting) conectarMQTT();
     }
 
-    @Override protected void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         if (networkCallback != null) {
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cm =
+                    (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             cm.unregisterNetworkCallback(networkCallback);
         }
+        //  Desconectar en hilo de background
         if (mqttClient != null) {
-            try { mqttClient.disconnect(); mqttClient.close(); } catch (Exception ignored) {}
+            MqttClient clientRef = mqttClient;
+            new Thread(() -> {
+                try { clientRef.disconnect(); } catch (Exception ignored) {}
+                try { clientRef.close(); } catch (Exception ignored) {}
+            }).start();
         }
     }
 }

@@ -209,7 +209,7 @@ public class encuestaPostConocimiento extends AppCompatActivity {
                                             mFirebaseAnalytics.logEvent("aprendizaje_completado", bundle);
 
                                             // 4. Guardar en SharedPreferences local
-                                            SharedPreferences prefs = getSharedPreferences("GuanteJPrefs", MODE_PRIVATE);
+                                            SharedPreferences prefs = getSharedPreferences("VisionSignPrefs", MODE_PRIVATE);
                                             prefs.edit().putBoolean("encuestaSatisfaccionCompletada", true).apply();
 
                                             Toast.makeText(encuestaPostConocimiento.this, "¡Gracias por tu participación!", Toast.LENGTH_SHORT).show();
