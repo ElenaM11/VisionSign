@@ -96,7 +96,7 @@ public class register extends AppCompatActivity {
                                     tvMensaje.setText(" Registro exitoso. Ahora inicia sesión.");
 
                                     // Esperar 2 segundos y volver al Login
-                                    new Handler().postDelayed(() -> finish(), 2000);
+                                    new Handler().postDelayed(() -> finish(), 1000);
                                 })
                                 .addOnFailureListener(e -> {
                                     progressBar.setVisibility(View.GONE);

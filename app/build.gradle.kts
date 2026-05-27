@@ -61,7 +61,7 @@ dependencies {
     implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")
 
     // ================= MQTT =================
-    // ✅ CORREGIDO: solo el cliente puro. NO incluir org.eclipse.paho.android.service
+    // CORREGIDO: solo el cliente puro. NO incluir org.eclipse.paho.android.service
     // porque fue eliminado del manifest. MqttClient funciona en un Thread normal.
     implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 

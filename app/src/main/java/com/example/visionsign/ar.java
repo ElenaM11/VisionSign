@@ -156,7 +156,7 @@ public class ar extends AppCompatActivity implements MqttListener {
 
                     Bundle bundle = new Bundle();
                     bundle.putString("seña", res.seña);
-                    bundle.putDouble("precision", ((com.example.visionsign.ClasificadorSenas.Resultado) res).precision);
+                    bundle.putDouble("precision", res.precision);
                     mFirebaseAnalytics.logEvent("acierto_practica", bundle);
                 } else {
                     String textoMostrar = "Seña no reconocida (" + Math.round(res.precision) + "%)";
